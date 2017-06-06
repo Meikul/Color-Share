@@ -13,7 +13,6 @@
     var num = [];
     for (var i=0; i<3; i++){
       num[i] = Math.floor(Math.random() * 255);
-      console.log(num[i]);
     }
     dbRef.set({
       red: num[0],
@@ -25,6 +24,6 @@
   dbRef.on('value', snap => {
     let val = snap.val();
     document.body.style.backgroundColor = "rgb("+val.red+","+val.blue+","+val.green+")";
+    document.getElementById('rgb').innerHTML = val.red+"  "+val.blue+"  "+val.green;
   });
-  console.log('good?');
 }());
