@@ -23,7 +23,8 @@
 
   dbRef.on('value', snap => {
     let val = snap.val();
-    document.body.style.backgroundColor = "rgb("+val.red+","+val.blue+","+val.green+")";
-    document.getElementById('rgb').innerHTML = val.red+"  "+val.blue+"  "+val.green;
+    document.body.style.backgroundColor = "rgb("+val.red+","+val.green+","+val.blue+")";
+    document.getElementById('rgb').innerHTML = val.red+"  "+val.green+"  "+val.blue;
+    document.querySelector('meta[name=theme-color]').setAttribute('content', "rgb("+val.red+","+val.green+","+val.blue+")");
   });
 }());
