@@ -17,7 +17,7 @@
     dbRef.set({
       red: num[0],
       green: num[1],
-      blue: num[2]
+      blue: num[2],
     });
   }
 
