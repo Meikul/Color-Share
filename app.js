@@ -41,8 +41,10 @@
 
   dbRef.on('value', snap => {
     let val = snap.val();
-    var oldPos = document.querySelector('#position');
+    var oldPos = document.getElementById('position');
+    var rgbText = document.getElementById('rgb');
     var pos = oldPos.cloneNode(true);
+    var metaTheme = document.querySelector('meta[name=theme-color]');
     oldPos.parentNode.replaceChild(pos, oldPos);
     console.log(window.innerHeight*val.position.y+"px");
     let width = window.innerWidth;
@@ -50,7 +52,7 @@
     let x = val.position.x;
     let y = val.position.y;
     // let size = 283 + (width > height ? "vw" : "vh");
-    let elem = document.querySelector('#position');
+    let elem = document.getElementById('position');
     elem.style.display = "block";
     elem.style.backgroundColor = "rgb("+val.red+","+val.green+","+val.blue+")";
     elem.style.top = 100*y+"vh";
@@ -59,21 +61,45 @@
     // textElem.style.top = -100*y+50+"vh";
     // textElem.style.left = -100*x+50+"vw";
     elem.classList.remove('growing-widescreen', 'growing-tallscreen');
+
+    let rad = (width > height) ? 2.81 * width : 2.81 * height; 
+    elem.style.width = rad+'px';
+    elem.style.height = rad+'px';
+
     if(width > height) elem.classList.add('growing-widescreen');
     else elem.classList.add('growing-tallscreen');
     // $('#position').animate({height: '280vh', width: '280vh'}, {duration: 500, easing: 'linear'});
     // $('#position').find('#pos-text').animate({top: '+=140vh', left: '+=140vh'}, {duration: 500, easing: 'linear'});
-    let rad = (width > height) ? 2.81 * width : 2.81 * height; 
-    elem.style.width = rad+'px';
-    elem.style.height = rad+'px';
-    setTimeout(() => {
+    // setTimeout(() => {
+    //   document.body.style.backgroundColor = "rgb("+val.red+","+val.green+","+val.blue+")";
+    //   document.getElementById('rgb').innerHTML = val.red+"  "+val.green+"  "+val.blue;
+    //   // document.getElementById('pos-text').innerHTML = val.red+"  "+val.green+"  "+val.blue;
+    //   document.querySelector('meta[name=theme-color]').setAttribute('content', "rgb("+val.red+","+val.green+","+val.blue+")");  
+    //   document.querySelector('#position').style.display = "none";
+    // }, 600);
+    rafTimeout(() => {
       document.body.style.backgroundColor = "rgb("+val.red+","+val.green+","+val.blue+")";
-      document.getElementById('rgb').innerHTML = val.red+"  "+val.green+"  "+val.blue;
-      // document.getElementById('pos-text').innerHTML = val.red+"  "+val.green+"  "+val.blue;
-      document.querySelector('meta[name=theme-color]').setAttribute('content', "rgb("+val.red+","+val.green+","+val.blue+")");  
-      document.querySelector('#position').style.display = "none";
-    }, 300);
+      rgbText.innerHTML = val.red+"  "+val.green+"  "+val.blue;
+      metaTheme.setAttribute('content', "rgb("+val.red+","+val.green+","+val.blue+")");  
+    }, 600);
+    rafTimeout(() => {
+      pos.style.display = 'none';
+    }, 1000);
   });
+
+  function rafTimeout (callback,delay){
+    var dateNow=Date.now,
+        requestAnimation=window.requestAnimationFrame,
+        start=dateNow(),
+        stop,
+        timeoutFunc=function(){
+          dateNow()-start<delay?stop||requestAnimation(timeoutFunc):callback()
+        };
+    requestAnimation(timeoutFunc);
+    return{
+      clear:function(){stop=1}
+    }
+  }
 }());
 
 // "green": {

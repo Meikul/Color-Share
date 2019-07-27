@@ -24,29 +24,29 @@ body {
 
 .growing-widescreen {
   animation-name: grow-wide;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
+  animation-duration: 1s;
+  animation-timing-function: ease;
   animation-iteration-count: 1;
 }
 
 .growing-tallscreen {
   animation-name: grow-tall;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
+  animation-duration: 1s;
+  animation-timing-function: ease;
   animation-iteration-count: 1;
 }
 
 .growing-tallscreen #pos-text {
   animation-name: grow-in-tall;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
+  animation-duration: 1s;
+  animation-timing-function: ease;
   animation-iteration-count: 1;
 }
 
 .growing-widescreen #pos-text {
   animation-name: grow-in-wide;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
+  animation-duration: 1s;
+  animation-timing-function: ease;
   animation-iteration-count: 1;
 }
 
@@ -55,6 +55,7 @@ body {
     /* height: 0; */
     /* width: 0; */
     transform: translate(-50%, -50%) scale(0.01);
+    opacity: 1;
   }
 
   60% {
@@ -74,6 +75,7 @@ body {
     /* height: 0; */
     /* width: 0; */
     transform: translate(-50%, -50%) scale(0.01);
+    opacity: 1;
   }
 
   60% {
@@ -93,6 +95,7 @@ body {
     /* height: 0; */
     /* width: 0; */
     transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
   }
 
   60% {
@@ -112,6 +115,7 @@ body {
     /* height: 0; */
     /* width: 0; */
     transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
   }
 
   60% {
