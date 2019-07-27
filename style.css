@@ -1,0 +1,127 @@
+body {
+  overflow: hidden;
+}
+
+#position {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+#rgb {
+  font-family:times new roman; margin-top:40vh; color:white; text-align:center; font-size: 10vh;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none; 
+}
+
+.growing-widescreen {
+  animation-name: grow-wide;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+}
+
+.growing-tallscreen {
+  animation-name: grow-tall;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+}
+
+.growing-tallscreen #pos-text {
+  animation-name: grow-in-tall;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+}
+
+.growing-widescreen #pos-text {
+  animation-name: grow-in-wide;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+}
+
+@keyframes grow-wide {
+  0% {
+    /* height: 0; */
+    /* width: 0; */
+    transform: translate(-50%, -50%) scale(0.01);
+  }
+
+  60% {
+    /* height: 280vw; */
+    /* width: 280vw; */
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes grow-tall {
+  0% {
+    /* height: 0; */
+    /* width: 0; */
+    transform: translate(-50%, -50%) scale(0.01);
+  }
+
+  60% {
+    /* height: 280vh; */
+    /* width: 280vh; */
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes grow-in-wide {
+  0% {
+    /* height: 0; */
+    /* width: 0; */
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  60% {
+    /* height: 280vw; */
+    /* width: 280vw; */
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes grow-in-tall {
+  0% {
+    /* height: 0; */
+    /* width: 0; */
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  60% {
+    /* height: 280vh; */
+    /* width: 280vh; */
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
