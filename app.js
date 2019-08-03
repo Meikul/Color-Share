@@ -81,10 +81,11 @@
       document.body.style.backgroundColor = "rgb("+val.red+","+val.green+","+val.blue+")";
       rgbText.innerHTML = val.red+"  "+val.green+"  "+val.blue;
       metaTheme.setAttribute('content', "rgb("+val.red+","+val.green+","+val.blue+")");  
+      rafTimeout(() => {
+        pos.style.display = 'none';
+      }, 300);
     }, 600);
-    rafTimeout(() => {
-      pos.style.display = 'none';
-    }, 1000);
+   
   });
 
   function rafTimeout (callback,delay){

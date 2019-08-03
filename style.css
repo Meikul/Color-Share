@@ -1,5 +1,12 @@
 body {
   overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
 }
 
 #position {
@@ -10,16 +17,26 @@ body {
   left: 0;
   transform: translate(-50%, -50%);
   position: absolute;
+  z-index: 1;
 }
 
 #rgb {
-  font-family:times new roman; margin-top:40vh; color:white; text-align:center; font-size: 10vh;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-     -khtml-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none; 
+  position: absolute;
+  top: 50vh;
+  width: 100vw;
+  transform: translateY(-50%);
+  font-family: times new roman;
+  /* margin-top: 40vh; */
+  color: white;
+  text-align: center;
+  font-size: 10vh;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  z-index: 0;
 }
 
 .growing-widescreen {
@@ -36,7 +53,7 @@ body {
   animation-iteration-count: 1;
 }
 
-.growing-tallscreen #pos-text {
+/* .growing-tallscreen #pos-text {
   animation-name: grow-in-tall;
   animation-duration: 1s;
   animation-timing-function: ease;
@@ -48,7 +65,7 @@ body {
   animation-duration: 1s;
   animation-timing-function: ease;
   animation-iteration-count: 1;
-}
+} */
 
 @keyframes grow-wide {
   0% {
@@ -90,17 +107,13 @@ body {
   }
 }
 
-@keyframes grow-in-wide {
+/* @keyframes grow-in-wide {
   0% {
-    /* height: 0; */
-    /* width: 0; */
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
   }
 
   60% {
-    /* height: 280vw; */
-    /* width: 280vw; */
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
   }
@@ -112,15 +125,11 @@ body {
 
 @keyframes grow-in-tall {
   0% {
-    /* height: 0; */
-    /* width: 0; */
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
   }
 
   60% {
-    /* height: 280vh; */
-    /* width: 280vh; */
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
   }
@@ -128,4 +137,4 @@ body {
   100% {
     opacity: 0;
   }
-}
+} */
