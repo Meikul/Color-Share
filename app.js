@@ -44,18 +44,28 @@
       window.onclick = activeClickHandle;
     }, 300);
   }
-  // dbRef.on('value', snap => {
-  //   let val = snap.val();
-  //   var rgbText = document.getElementById('rgb');
 
-  // });
+  var lastSnapVal = null;
 
   dbRef.on('value', snap => {
-    const animationDuration = 1500;
     let val = snap.val();
-    var rgbText = document.getElementById('rgb');
+    if(document.hidden){
+      lastSnapVal = val;
+    }else{
+      colorChange(val);
+    }
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if(lastSnapVal){
+      colorChange(lastSnapVal);
+      lastSnapVal = null;
+    }
+  });
+
+  function colorChange(val){
+    const animationDuration = 1500;
     var circleElem = document.createElement('div');
-    var metaTheme = document.querySelector('meta[name=theme-color]');
     circleElem.classList.add('circle');
     document.body.append(circleElem);
     let width = window.innerWidth;
@@ -74,18 +84,23 @@
     if(width > height) circleElem.classList.add('growing-widescreen');
     else circleElem.classList.add('growing-tallscreen');
     rafTimeout(() => {
-      document.body.style.backgroundColor = "rgb("+val.red+","+val.green+","+val.blue+")";
-      rgbText.innerHTML = `${val.red} ${val.green} ${val.blue}`;
-      metaTheme.setAttribute('content', "rgb("+val.red+","+val.green+","+val.blue+")");  
+      setBackground(val);
       rafTimeout(() => {
         circleElem.style.display = 'none';
         circleElem.remove();
       }, (animationDuration * 0.3));
     }, (animationDuration * 0.6));
-   
-  });
+  }
 
-  function rafTimeout (callback,delay){
+  function setBackground(val){
+    var rgbText = document.getElementById('rgb');
+    var metaTheme = document.querySelector('meta[name=theme-color]');
+    document.body.style.backgroundColor = "rgb("+val.red+","+val.green+","+val.blue+")";
+    rgbText.innerHTML = `${val.red} ${val.green} ${val.blue}`;
+    metaTheme.setAttribute('content', "rgb("+val.red+","+val.green+","+val.blue+")");  
+  }
+
+  function rafTimeout(callback,delay){
     var dateNow=Date.now,
         requestAnimation=window.requestAnimationFrame,
         start=dateNow(),
