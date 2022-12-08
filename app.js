@@ -68,16 +68,18 @@
     var circleElem = document.createElement('div');
     circleElem.classList.add('circle');
     document.body.append(circleElem);
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    let x = val.position.x;
-    let y = val.position.y;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const x = val.position.x;
+    const y = val.position.y;
+
+    const rad = (width > height) ? 2.81 * width : 2.81 * height;
+
     circleElem.style.display = "block";
     circleElem.style.backgroundColor = "rgb("+val.red+","+val.green+","+val.blue+")";
     circleElem.style.top = 100*y+"vh";
     circleElem.style.left = 100*x+"vw";
 
-    let rad = (width > height) ? 2.81 * width : 2.81 * height; 
     circleElem.style.width = rad+'px';
     circleElem.style.height = rad+'px';
 
@@ -97,7 +99,7 @@
     var metaTheme = document.querySelector('meta[name=theme-color]');
     document.body.style.backgroundColor = "rgb("+val.red+","+val.green+","+val.blue+")";
     rgbText.innerHTML = `${val.red} ${val.green} ${val.blue}`;
-    metaTheme.setAttribute('content', "rgb("+val.red+","+val.green+","+val.blue+")");  
+    metaTheme.setAttribute('content', "rgb("+val.red+","+val.green+","+val.blue+")");
   }
 
   function rafTimeout(callback,delay){
@@ -106,7 +108,7 @@
         start=dateNow(),
         stop,
         timeoutFunc=function(){
-          dateNow()-start<delay?stop||requestAnimation(timeoutFunc):callback()
+          ((dateNow()-start) < delay)?stop||requestAnimation(timeoutFunc):callback()
         };
     requestAnimation(timeoutFunc);
     return{
